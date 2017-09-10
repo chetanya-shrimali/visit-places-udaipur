@@ -1,9 +1,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
-.main-head{
-    text-align: center;
-}
+
 #map {
     height: 100%;
 }
@@ -17,9 +15,8 @@ body {
 }
 
 .map-container {
-    padding: 32px;
-    height: 90%;
-    width: 90%;
+    height: 80%;
+    width: 80%;
 }
 
 .container {

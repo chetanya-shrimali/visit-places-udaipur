@@ -14,33 +14,57 @@ function initMap() {
 
     // Markers list array
     var markerList = [
-        {title: 'Celebration mall', location: {lat: 24.6125, lng: 73.7027}, index: 0},
-        {title: 'Lakecity Mall', location: {lat: 24.5860, lng: 73.7105}, index: 1},
-        {title: 'Natraj Hotel', location: {lat: 24.5806, lng: 73.6963}, index: 2},
         {
-            title: 'Sukhadia Circle', location: {lat: 24.6013, lng: 73.6913}, index: 3
+            title: 'Celebration mall',
+            location: {lat: 24.6125, lng: 73.7027},
+            index: 0
         },
         {
-            title: 'Fateh Sagar Lake', location: {lat: 24.6014, lng: 73.6742}, index: 4
+            title: 'Lakecity Mall',
+            location: {lat: 24.5860, lng: 73.7105},
+            index: 1
         },
         {
-            title: 'Lake Palace', location: {lat: 24.5754, lng: 73.6800}, index: 5
+            title: 'Natraj Hotel',
+            location: {lat: 24.5806, lng: 73.6963},
+            index: 2
+        },
+        {
+            title: 'Sukhadia Circle',
+            location: {lat: 24.6013, lng: 73.6913},
+            index: 3
+        },
+        {
+            title: 'Fateh Sagar Lake',
+            location: {lat: 24.6014, lng: 73.6742},
+            index: 4
+        },
+        {
+            title: 'Lake Palace',
+            location: {lat: 24.5754, lng: 73.6800},
+            index: 5
         },
         {
             title: 'Ambamata', location: {lat: 24.5857, lng: 73.6757}, index: 6
         },
         {
-            title: 'City Palace', location: {lat: 24.5764, lng: 73.6835}, index: 7
+            title: 'City Palace',
+            location: {lat: 24.5764, lng: 73.6835},
+            index: 7
         },
         {
-            title: 'Saheliyon-ki-Bari', location: {lat: 24.6031, lng: 73.6860}, index: 8
+            title: 'Saheliyon-ki-Bari',
+            location: {lat: 24.6031, lng: 73.6860},
+            index: 8
         },
         {
-            title: 'Bharatiya Lok Kala Mandal', location: {lat: 24.5945, lng: 73.6917}, index: 9
+            title: 'Bharatiya Lok Kala Mandal',
+            location: {lat: 24.5945, lng: 73.6917},
+            index: 9
         }];
 
     // markers array
-    markers = [];
+    var markers = [];
 
     // initialises markers from markersList
     function initializeMarkers() {
@@ -59,15 +83,16 @@ function initMap() {
             bounds.extend(marker.position);
 
             // adding info window to marker
-            marker.addListener('click', function () {
-                populateInfoWindow(this, largeInfoWindow);
-
-            });
+            marker.addListener('click', addMarkers);
         }
         // fit the bounds
         map.fitBounds(bounds);
     }
 
+    function addMarkers() {
+        populateInfoWindow(this, largeInfoWindow);
+
+    }
 
     //refresh Marker
     function refreshMarkers(markerList) {
@@ -172,7 +197,7 @@ function initMap() {
             } else {
                 var temp_list = self.markerList.slice();
                 return temp_list.filter(function (marker) {
-                    return marker.title.toLowerCase().indexOf(filter.toLowerCase()) > -1;
+                    return marker.title.toLowerCase().indexOf(filter.toLowerCase()) >= 0;
                 });
             }
         });
