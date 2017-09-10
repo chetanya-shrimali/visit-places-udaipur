@@ -1,0 +1,56 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#map {
+    height: 100%;
+}
+
+.box {
+    top: 0px;
+    width: 300px;
+    padding: 32px;
+    z-index: 4;
+    background-color: rgba(255,255,255, 0.5);
+}
+
+.map-container {
+    height: 80%;
+    width: 80%;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+}
+
+.markers {
+    padding-left: 0;
+    margin-top: 40px;
+}
+
+.markers li {
+    list-style: none;
+}
+
+.markers li a {
+    border-bottom: 0px solid black;
+    line-height: 30px;
+    color: #505050;
+    text-decoration: none;
+    transition: border-bottom 0.3s;
+}
+
+.markers li a:hover {
+     border-bottom: 1px solid black;
+}
+
+.input-text {
+    box-shadow: 0 0 5px rgba(72,72,72,1);
+    line-height: 24px;
+    padding: 8px;
+    width: 100%;
+    font-size: 18px;
+}
+

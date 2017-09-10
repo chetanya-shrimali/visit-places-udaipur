@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visit Udaipur</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<!--Container-->
+<div class="container">
+    <div class="row"></div>
+    <div class="col-md-3">
+
+        <div class="box">
+            <h2>Visit Places in Udaipur</h2>
+            <div>
+                <div>
+                    <input class="input-text" type="text" data-bind="value:listFilter,valueUpdate: 'afterkeydown'"
+                           placeholder="Type in places to visit">
+                </div>
+                <ul class="markers" data-bind="foreach:markers()">
+                    <li data-bind="click: $parent.itemClicked.bind($data, index)"><a href=""
+                                                                                     data-bind="text:title"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="./js/knockout-3.4.2.js"></script>
+<script src="./js/index.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhECZTm_lnmPZPf3LVxytigP7C6NxWfoQ&v=3&callback=initMap"
+        async
+        defer></script>
+</body>
+</html>
