@@ -10,11 +10,14 @@ It includes following features:
 - Pop-up displays with description of the respective points
 - Use of bootstrap to make the webpage work on different screens
 
+### How to download?
+- Hit the green button on the right-top corner to download or clone
+
 ### Requirements
 - You will require an `API KEY` from `Google`. Follow the link
   - `www.console.developers.google.com`
 - You will require an `API KEY` from `FourSquare`. Follow the link
   - `https://developer.foursquare.com`
   
-### How to download?
-- Hit the green button on the right-top corner to download or clone
+### How to run app locally?
+- In order to run the app locally open the file visit_places_udaipur.html directly in any browser.
