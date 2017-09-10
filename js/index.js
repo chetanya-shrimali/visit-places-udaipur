@@ -172,7 +172,7 @@ function initMap() {
             } else {
                 var temp_list = self.markerList.slice();
                 return temp_list.filter(function (marker) {
-                    return marker.title.toLowerCase().indexOf(filter.toLowerCase()) >= 0;
+                    return marker.title.toLowerCase().indexOf(filter.toLowerCase()) > -1;
                 });
             }
         });
