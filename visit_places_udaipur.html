@@ -14,8 +14,7 @@
 <!--Container-->
 <div class="container">
     <div class="row"></div>
-    <div class="col-md-3">
-
+    <div class="col-md-12">
         <div class="box">
             <h2>Visit Places in Udaipur</h2>
             <div>
@@ -24,25 +23,21 @@
                            placeholder="Type in places to visit">
                 </div>
                 <ul class="markers" data-bind="foreach:markers()">
-                    <li data-bind="click: $parent.itemClicked.bind($data, index)"><a href=""
-                                                                                     data-bind="text:title"></a>
-                    </li>
+                    <span data-bind="click: $parent.itemClicked.bind($data, index)"> => <a href=""
+                                                                                     data-bind="text:title"></a> <= </span>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="col-md-9">
-        <div class="map-container">
+         <div class="map-container">
             <div id="map"></div>
         </div>
     </div>
-
 </div>
 
 <script src="./js/knockout-3.4.2.js"></script>
 <script src="./js/index.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhECZTm_lnmPZPf3LVxytigP7C6NxWfoQ&v=3&callback=initMap"
         async
-        defer></script>
+        defer onerror="mapLoadError()"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 body {
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
 }
 
 #map {
@@ -7,20 +8,18 @@ body {
 }
 
 .box {
-    top: 0px;
-    width: 300px;
+    width: 100%;
     padding: 32px;
-    z-index: 4;
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .map-container {
-    height: 80%;
-    width: 80%;
+    height: 100%;
+    width: 100%;
 }
 
 .container {
-    height: 100vh;
+    height: 100%;
     display: flex;
     width: 100%;
 }
@@ -30,24 +29,24 @@ body {
     margin-top: 40px;
 }
 
-.markers li {
+.markers span {
     list-style: none;
 }
 
-.markers li a {
+.markers span a {
     border-bottom: 0px solid black;
     line-height: 30px;
-    color: #505050;
+    color: blue;
     text-decoration: none;
     transition: border-bottom 0.3s;
 }
 
-.markers li a:hover {
-     border-bottom: 1px solid black;
+.markers span a:hover {
+    border-bottom: 1px solid black;
 }
 
 .input-text {
-    box-shadow: 0 0 5px rgba(72,72,72,1);
+    box-shadow: 0 0 5px rgba(72, 72, 72, 1);
     line-height: 24px;
     padding: 8px;
     width: 100%;

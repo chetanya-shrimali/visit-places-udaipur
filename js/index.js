@@ -63,7 +63,7 @@ function initMap() {
             index: 9
         }];
 
-    // markers array
+    // Initialisng markers
     var markers = [];
 
     // initialises markers from markersList
@@ -94,13 +94,10 @@ function initMap() {
 
     }
 
-    //refresh Marker
+    //refresh Marker based on Filter
     function refreshMarkers(markerList) {
-        // hides all markers in markers array
-
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
-        }
+        // hides all markers
+        hideListing(markers);
         markerList().forEach(function (data) {
             markers[data.index].setMap(map);
         });
@@ -114,8 +111,14 @@ function initMap() {
         map.fitBounds(bounds);
     }
 
+    // function to hide all the marker
+    function hideListing(markers_l) {
+        for (var i = 0; i < markers_l.length; i++) {
+            markers_l[i].setMap(null);
+        }
+    }
 
-    // Info widow function
+// Info widow function
     function populateInfoWindow(marker, infowindow) {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
@@ -179,6 +182,7 @@ function initMap() {
 
     }
 
+
     // View Model
     function ViewModel() {
         var self = this;
@@ -213,7 +217,7 @@ function initMap() {
         };
     }
 
-    // Initialises the function on document load
+    // Initialises the functiom on document load
     $(document).ready(function () {
         // initialises markers
         initializeMarkers();
@@ -222,5 +226,19 @@ function initMap() {
         var viewModel = new ViewModel();
         ko.applyBindings(viewModel);
 
+        // Adds function binding on filter value change
+        viewModel.listFilter.subscribe(function () {
+            viewModel.refreshMarkers();
+        });
+
+        // sidebar toggle for responsiveness
+        $('.sidebar-toggle').click(function () {
+            $('.opt-box').toggleClass('opt-hide');
+        });
     });
 }
+
+// mapLoadError shows error when google maps failed to load
+mapLoadError = function () {
+    alert('Google maps failed to load. Try reloading the page or Connect to internet');
+};
