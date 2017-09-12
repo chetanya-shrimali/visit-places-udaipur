@@ -159,8 +159,8 @@ function initMap() {
         $.getJSON(req_url, function (data) {
             console.log(data);
 
-            var found_place = data.response.venues[0];
-            var marker_to_html = '<h3>' + marker.title + '</h3>' + '<hr>';
+            var found_place = data.response.venues[0] || 'Place Not Found';
+            var marker_to_html = '<h3>' + marker.title + '</h3>' + '<hr>'|| 'Name Not Found!!';
 
             if (found_place.categories.length) {
                 marker_to_html += '<b>Place-type: </b>' + found_place.categories[0].name + '<br>';
@@ -171,7 +171,7 @@ function initMap() {
                 marker_to_html += found_place.location.address + '<br>';
             }
 
-            marker_to_html += found_place.location.city + ',' + found_place.location.country;
+            marker_to_html += (found_place.location.city || 'City Name Not Found') + ',' + (found_place.location.country || 'Country Name Not Found');
 
             infowindow.setContent(marker_to_html);
 
@@ -229,11 +229,6 @@ function initMap() {
         // Adds function binding on filter value change
         viewModel.listFilter.subscribe(function () {
             viewModel.refreshMarkers();
-        });
-
-        // sidebar toggle for responsiveness
-        $('.sidebar-toggle').click(function () {
-            $('.opt-box').toggleClass('opt-hide');
         });
     });
 }
