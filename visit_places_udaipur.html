@@ -20,33 +20,36 @@
   <div class="row">
     <div class="col-md-12 col-sm-12">
       <div class="box">
-        <!--<h2>Visit Places in Udaipur</h2>
+        <h2>Visit Places in Udaipur</h2>
         <div>
-            <div>
-                <input class="input-text" type="text" data-bind="value:listFilter,valueUpdate: 'afterkeydown'"
-                       placeholder="Type in places to visit">
-            </div>
-            <ul class="markers" data-bind="foreach:markers()">
-                <span data-bind="click: $parent.itemClicked.bind($data, index)"> => <a href=""
-                                                                                 data-bind="text:title"></a> <= </span>
-            </ul>
-        </div>-->
+          <div>
+            <input class="input-text" type="text"
+                   data-bind="value:textInput,valueUpdate: 'afterkeydown'"
+                   placeholder="Type in places to visit">
+          </div>
+          <ul class="markers" data-bind="foreach:markers">
+            <span data-bind="click: $parent.itemClicked.bind($data, $index())">=> <a
+                href="" data-bind="text: title"></a> <=</span>
+            <!--<span data-bind="click: $parent.itemClicked.bind($dacta, index)"> => <a href="" data-bind="text:title"></a> <=</span>-->
+          </ul>
+        </div>
       </div>
       maps
-      <div class="container">
-            <div id="map"></div>
-        </div>
-
+      <div class="container-map">
+        <div id="map"></div>
       </div>
+
     </div>
   </div>
 </div>
+</div>
 
-<script src="./js/knockout-3.4.2.js"></script>
-<script src="./js/index2.js"></script>
+
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhECZTm_lnmPZPf3LVxytigP7C6NxWfoQ&v=3&callback=init"
     async
-    defer></script>
+    defer onerror="onError()"></script>
+<script src="./js/knockout-3.4.2.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
