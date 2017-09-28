@@ -1,6 +1,4 @@
-//var styles = require("./styles.js");
-//called on the start to check for
-
+//Main function called on calling google api url
 var MapMain = function () {// acts as a controller or ModelViewViewModel
 
     // added styles to the map
@@ -273,12 +271,13 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
     var bounds = new google.maps.LatLngBounds();
 
     //initializing map
-    var map = new google.maps.Map(document.getElementById('map'), {
-        //location of udaipur
-        center: {lat: 24.571270, lng: 73.691544},
-        zoom: 13,
-        styles: styles.styles
-    });
+    var map = new google.maps.Map(document.getElementById('map'),
+        {
+            //location of udaipur
+            center: {lat: 24.571270, lng: 73.691544},
+            zoom: 13,
+            styles: styles.styles
+        });
 
     //loop to initialize the markers for specific places
     for (var i = 0; i < to_visit.length; i++) {
@@ -389,56 +388,67 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
         })
     }
 
+    // function to hide the markers
     var hideMarkers = function (list_to_return) {
-            var showThese = [];
-            for (var iterate in list_to_return) {
-                for (var j in place_markers) {
-                    console.log("*");
-                    if (list_to_return[iterate] === place_markers[j]) {
-                        showThese.push(j);
-                    }
-                    place_markers[j].setVisible(false);
+        var showThese = [];
+        // iterates over list to return and checks for matched markers
+        // and set them to visible
+        for (var iterate in list_to_return) {
+            for (var j in place_markers) {
+                console.log("*");
+                if (list_to_return[iterate] === place_markers[j]) {
+                    showThese.push(j);
                 }
+                place_markers[j].setVisible(false);
             }
-            for (var i in showThese){
-                //console.log(showThese);
-                console.log(place_markers[showThese[i]]);
-                place_markers[showThese[i]].setVisible(true);
-            }
-        };
+        }
+        // sets the required items visible
+        for (var i in showThese) {
+            //console.log(showThese);
+            console.log(place_markers[showThese[i]]);
+            place_markers[showThese[i]].setVisible(true);
+        }
+    };
 
+    // method does following things
+    //1) checks and stores users input
+    //2) returns list to be shown based on following input
+    //3) hides markers based on input
+    //4) popup info window based on the list item clicked
     function Octopus() {
         self = this;
 
         console.log('reached here');
+
         //storing text input from inputfield
         self.textInput = ko.observable('');
 
         console.log(place_markers);
-        //a computed function which gives full list in case no value is input
-        // and gives the matching pairs according to the if there is an input
 
+        // function to return the list based on input text
         self.markers_list = ko.computed(function () {
+            // list to be returned
             var list_to_return = [];
-            if (self.textInput !== '') {
-                console.log("View Model => " + self.textInput());
-                var text_input_lowercase = self.textInput().toLowerCase();
 
-                for (i in place_markers) {
-                    var place_markers_title = place_markers[i].title.toLowerCase();
-                    //console.log(place_markers_title);
-                    var substring_place_marker = place_markers_title.substring(0, text_input_lowercase.length);
-                    //console.log(substring_place_marker);
-                    if (substring_place_marker === text_input_lowercase) {
-                        console.log("true");
-                        list_to_return.push(place_markers[i]);
-                    }
+            // checking for text input
+            console.log("View Model => " + self.textInput());
+            var text_input_lowercase = self.textInput().toLowerCase();
+
+            for (i in place_markers) {
+                var place_markers_title = place_markers[i].title.toLowerCase();
+                //console.log(place_markers_title);
+                var substring_place_marker = place_markers_title.substring(0, text_input_lowercase.length);
+                //console.log(substring_place_marker);
+                if (substring_place_marker === text_input_lowercase) {
+                    console.log("true");
+                    list_to_return.push(place_markers[i]);
                 }
-                hideMarkers(list_to_return);
-                console.log(list_to_return);
-
-                return list_to_return;
             }
+            // function call to hide markers
+            hideMarkers(list_to_return);
+            console.log(list_to_return);
+
+            return list_to_return;
         });
 
         //takes the whole marker's data as input
