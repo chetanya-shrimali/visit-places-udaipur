@@ -389,6 +389,24 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
         })
     }
 
+    var hideMarkers = function (list_to_return) {
+            var showThese = [];
+            for (var iterate in list_to_return) {
+                for (var j in place_markers) {
+                    console.log("*");
+                    if (list_to_return[iterate] === place_markers[j]) {
+                        showThese.push(j);
+                    }
+                    place_markers[j].setVisible(false);
+                }
+            }
+            for (var i in showThese){
+                //console.log(showThese);
+                console.log(place_markers[showThese[i]]);
+                place_markers[showThese[i]].setVisible(true);
+            }
+        };
+
     function Octopus() {
         self = this;
 
@@ -411,17 +429,18 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
                     //console.log(place_markers_title);
                     var substring_place_marker = place_markers_title.substring(0, text_input_lowercase.length);
                     //console.log(substring_place_marker);
-                    if (substring_place_marker === text_input_lowercase){
+                    if (substring_place_marker === text_input_lowercase) {
                         console.log("true");
                         list_to_return.push(place_markers[i]);
                     }
                 }
-
+                hideMarkers(list_to_return);
                 console.log(list_to_return);
 
                 return list_to_return;
             }
         });
+
         //takes the whole marker's data as input
         self.itemClicked = function (data) {
             console.log("reached");
