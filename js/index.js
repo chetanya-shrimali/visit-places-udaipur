@@ -1,7 +1,8 @@
 //var styles = require("./styles.js");
+//called on the start to check for
 
+var MapMain = function () {// acts as a controller or ModelViewViewModel
 
-var init = function () {
     // added styles to the map
     var styles = [
         {
@@ -325,15 +326,10 @@ var init = function () {
         // &ll=24.586, 73.71050000000002&query=Lakecity Mall
         // so to add certain values break the code
         var fourSquareUrl = 'https://api.foursquare.com/v2/venues/search?v=20161016';
-        var client_id = 'OGYOWYGXK3YPMIKBQUEVDAUYSHNN5KB21A1RGAUJ34OCMJTS';
-        var client_secret = '1Z0FQG3LD4FZUW5CB5JJMBXSFKH25ZUADRK4IR4NHUJYCXPF';
-        var latlong = marker.getPosition().lat() + ", " + marker.getPosition().lng();
-        var title = marker.title;
-
-        fourSquareUrl += '&client_id=' + client_id;
-        fourSquareUrl += '&client_secret=' + client_secret;
-        fourSquareUrl += '&ll=' + latlong;
-        fourSquareUrl += '&query=' + title;
+        fourSquareUrl += '&client_id=' + 'OGYOWYGXK3YPMIKBQUEVDAUYSHNN5KB21A1RGAUJ34OCMJTS';
+        fourSquareUrl += '&client_secret=' + '1Z0FQG3LD4FZUW5CB5JJMBXSFKH25ZUADRK4IR4NHUJYCXPF';
+        fourSquareUrl += '&ll=' + marker.getPosition().lat() + ", " + marker.getPosition().lng();
+        fourSquareUrl += '&query=' + marker.title;
         console.log(fourSquareUrl);
         // json request sent to the url getting the data in recieved
         $.getJSON(fourSquareUrl, function (recieved) {
@@ -388,7 +384,6 @@ var init = function () {
         })
     }
 
-    // acts as a controller or ModelViewViewModel
     function Octopus() {
         self = this;
 
@@ -424,16 +419,9 @@ var init = function () {
         }
     }
 
-    //called on the start to check for
-    $(document).ready(function () {
-        // creating instance of octopus
-        var octopus = new Octopus();
-        //applying bindings
-        ko.applyBindings(octopus);
-    });
-};
+    var octopus = new Octopus();
+    //applying bindings
+    ko.applyBindings(octopus);
 
-function onError() {
-    console.log("Error");
-    alert("Error");
-}
+
+};
