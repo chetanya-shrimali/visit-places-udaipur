@@ -19,7 +19,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 col-sm-12">
-      <div class="box">
         <h2>Visit Places in Udaipur</h2>
         <div>
           <div>
@@ -27,8 +26,8 @@
                    data-bind="value:textInput,valueUpdate: 'afterkeydown'"
                    placeholder="Type in places to visit">
           </div>
-          <ul class="markers" data-bind="foreach:markers">
-            <span data-bind="click: $parent.itemClicked.bind($data, $index())">=> <a
+          <ul class="markers" data-bind="foreach:markers_list">
+            <span data-bind="click: $parent.itemClicked">=> <a
                 href="" data-bind="text: title"></a> <=</span>
             <!--<span data-bind="click: $parent.itemClicked.bind($dacta, index)"> => <a href="" data-bind="text:title"></a> <=</span>-->
           </ul>

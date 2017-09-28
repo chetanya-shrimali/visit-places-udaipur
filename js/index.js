@@ -219,6 +219,7 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
             ]
         }
     ];
+
     // places to be shown on the map
     var to_visit = [
         {
@@ -261,12 +262,16 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
             title: 'Bharatiya Lok Kala Mandal',
             location: {lat: 24.5945, lng: 73.6917},
         }];
+
     // place markers containing array
     var place_markers = [];
+
     // info window to show details of specific marker
     var largeInfowindow = new google.maps.InfoWindow();
+
     // setting bounds to map
     var bounds = new google.maps.LatLngBounds();
+
     //initializing map
     var map = new google.maps.Map(document.getElementById('map'), {
         //location of udaipur
@@ -390,38 +395,42 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
         console.log('reached here');
         //storing text input from inputfield
         self.textInput = ko.observable('');
-        //storing the list of markers
-        self.place_markers = place_markers;
+
         console.log(place_markers);
         //a computed function which gives full list in case no value is input
         // and gives the matching pairs according to the if there is an input
-        self.markers = ko.computed(function () {
-            if (self.textInput() === '') {
-                return self.place_markers;
-            } else {
-                var update_list = self.place_markers.slice();
-                return update_list.filter(function (marker) {
-                    return marker.title.toLowerCase().indexOf(self.textInput().toLowerCase()) >= 0;
-                });
+
+        self.markers_list = ko.computed(function () {
+            var list_to_return = [];
+            if (self.textInput !== '') {
+                console.log("View Model => " + self.textInput());
+                var text_input_lowercase = self.textInput().toLowerCase();
+
+                for (i in place_markers) {
+                    var place_markers_title = place_markers[i].title.toLowerCase();
+                    //console.log(place_markers_title);
+                    var substring_place_marker = place_markers_title.substring(0, text_input_lowercase.length);
+                    //console.log(substring_place_marker);
+                    if (substring_place_marker === text_input_lowercase){
+                        console.log("true");
+                        list_to_return.push(place_markers[i]);
+                    }
+                }
+
+                console.log(list_to_return);
+
+                return list_to_return;
             }
         });
-        //takes the index  of list item clicked as input and call the popUpItem
-        self.itemClicked = function (id) {
+        //takes the whole marker's data as input
+        self.itemClicked = function (data) {
             console.log("reached");
-            console.log(id);
-            popUpItem(id);
+            console.log(data);
+            populateInfoWindow(data, largeInfowindow);
         };
-
-        //pops up the item clicked on the map
-        function popUpItem(id) {
-            console.log(id);
-            populateInfoWindow(place_markers[id], largeInfowindow);
-        }
     }
 
     var octopus = new Octopus();
     //applying bindings
     ko.applyBindings(octopus);
-
-
 };
