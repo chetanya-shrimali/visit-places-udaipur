@@ -330,8 +330,8 @@ var MapMain = function () {// acts as a controller or ModelViewViewModel
         // &ll=24.586, 73.71050000000002&query=Lakecity Mall
         // so to add certain values break the code
         var fourSquareUrl = 'https://api.foursquare.com/v2/venues/search?v=20161016';
-        fourSquareUrl += '&client_id=' + 'OGYOWYGXK3YPMIKBQUEVDAUYSHNN5KB21A1RGAUJ34OCMJTS';
-        fourSquareUrl += '&client_secret=' + '1Z0FQG3LD4FZUW5CB5JJMBXSFKH25ZUADRK4IR4NHUJYCXPF';
+        fourSquareUrl += '&client_id=' + '<CLIENT_ID>';
+        fourSquareUrl += '&client_secret=' + '<CLIENT_SECRET>';
         fourSquareUrl += '&ll=' + marker.getPosition().lat() + ", " + marker.getPosition().lng();
         fourSquareUrl += '&query=' + marker.title;
         console.log(fourSquareUrl);
